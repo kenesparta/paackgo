@@ -17,5 +17,6 @@ FROM alpine:3.14
 WORKDIR /app
 
 COPY --from=go_builder /app/paackgo .
+COPY --from=go_builder /app/.env .
 
 ENTRYPOINT [ "./paackgo" ]

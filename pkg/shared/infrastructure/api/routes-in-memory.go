@@ -7,6 +7,6 @@ import (
 
 func InitInMemoryRoutes(r *mux.Router) {
 	r.HandleFunc("/",
-		func(writer http.ResponseWriter, request *http.Request) {
+		func(w http.ResponseWriter, r *http.Request) {
 		}).Methods("GET")
 }

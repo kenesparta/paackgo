@@ -6,7 +6,6 @@ services:
       dockerfile: Dockerfile
     image: ghcr.io/kenesparta/paack_go
     container_name: paack_go_rest_service
-    env_file: .env
     volumes:
       - "./cities.txt:/app/cities.txt"
       - "./logs:/app/logs"

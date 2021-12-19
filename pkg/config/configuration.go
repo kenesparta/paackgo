@@ -18,7 +18,6 @@ func NewVariableConfig(c iConfiguration) *VariableConfig {
 	builder.iConfig = c
 	return builder.
 		appPort().
-		appIP().
 		build()
 }
 
@@ -33,13 +32,6 @@ type variableBuilder struct {
 func (vb *variableBuilder) appPort() *variableBuilder {
 	vb.actions = append(vb.actions, func(config *VariableConfig) {
 		config.App.Port = vb.iConfig.Get("APP_PORT")
-	})
-	return vb
-}
-
-func (vb *variableBuilder) appIP() *variableBuilder {
-	vb.actions = append(vb.actions, func(config *VariableConfig) {
-		config.App.Ip = vb.iConfig.Get("APP_IP")
 	})
 	return vb
 }
