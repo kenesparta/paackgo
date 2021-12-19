@@ -3,16 +3,12 @@ l/up:
 	docker-compose --env-file ./pkg/.env up --detach --build --force-recreate --remove-orphans
 
 l/init:
-	mkdir -p logs
+	mkdir -p ./pkg/logs
 	cp -n .env.example ./pkg/.env
+	cp -n ./challenge/cities.txt ./pkg/cities.txt
 
 l/test:
-	cd pkg && \
-	go mod tidy && \
-	go get -d -u && \
-	go test -v ./... -cover
+	@cd pkg && go mod tidy && go get -d -u && go test -v ./... -cover
 
 l/run:
-	cd pkg && \
-	go build . && \
-	./paackgo
+	@cd pkg && go build -o paackgo && ./paackgo

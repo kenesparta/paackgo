@@ -1,7 +1,9 @@
 package main
 
+import "github.com/kenesparta/paackgo/app"
+
 func main() {
-	app := &App{}
-	app.Initialize()
-	app.Run()
+	a := &app.App{}
+	a.Initialize()
+	a.Run()
 }

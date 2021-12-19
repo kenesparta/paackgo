@@ -11,6 +11,9 @@ type VariableConfig struct {
 		Port string
 		Ip   string
 	}
+	File struct {
+		Name string
+	}
 }
 
 func NewVariableConfig(c iConfiguration) *VariableConfig {
@@ -18,6 +21,7 @@ func NewVariableConfig(c iConfiguration) *VariableConfig {
 	builder.iConfig = c
 	return builder.
 		appPort().
+		fileName().
 		build()
 }
 
@@ -32,6 +36,13 @@ type variableBuilder struct {
 func (vb *variableBuilder) appPort() *variableBuilder {
 	vb.actions = append(vb.actions, func(config *VariableConfig) {
 		config.App.Port = vb.iConfig.Get("APP_PORT")
+	})
+	return vb
+}
+
+func (vb *variableBuilder) fileName() *variableBuilder {
+	vb.actions = append(vb.actions, func(config *VariableConfig) {
+		config.File.Name = vb.iConfig.Get("FILE_NAME")
 	})
 	return vb
 }

@@ -17,5 +17,6 @@
 
 # Sensible data
 .env
-logs
+pkg/logs
 paackgo
+pkg/cities.txt
