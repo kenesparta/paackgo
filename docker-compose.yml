@@ -2,13 +2,14 @@ version: '3.7'
 services:
   paack_go_rest_service:
     build:
-      context: '.'
+      context: './pkg'
       dockerfile: Dockerfile
     image: ghcr.io/kenesparta/paack_go
     container_name: paack_go_rest_service
     env_file: .env
     volumes:
-      - "cities.txt:."
+      - "./cities.txt:/app/cities.txt"
+      - "./logs:/app/logs"
     restart: "no"
     ports:
-      - "${API_PORT}:${API_PORT}"
+      - "${APP_PORT}:${APP_PORT}"
