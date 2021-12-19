@@ -2,6 +2,6 @@ package domain
 
 type TripRepository interface {
 	Get(TripId) Trip
-	Save(trip Trip) TripId
+	Save(Trip) TripId
 	GetAll() []Trip
 }
