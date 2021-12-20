@@ -59,6 +59,12 @@ LOGS_DIR=./logs
 
 # 3. Run the app
 
+- Quick run:
+```shell
+make l/init
+make l/run
+```
+
 - Using docker:
 ```shell
 make l/docker

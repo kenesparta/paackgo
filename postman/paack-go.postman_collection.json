@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "e950cf7e-2ed1-4fd7-b489-530fae656d1b",
+		"name": "paack-go",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "city",
+			"item": [
+				{
+					"name": "City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/city/0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"city",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "trip",
+			"item": [
+				{
+					"name": "Get All Trips",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/trip",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"trip"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Trip",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/trip/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"trip",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Trip",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"originId\": 4,\n    \"destinationId\": 5,\n    \"dates\": [\"Sat\", \"Fri\"],\n    \"price\": 40.55\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/trip",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"trip"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
