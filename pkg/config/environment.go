@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"os"
 )
@@ -12,7 +11,7 @@ type Environment struct{}
 func (e Environment) Get(key string) string {
 	value := os.Getenv(key)
 	if value == "" {
-		log.Println(fmt.Sprintf("key %s environment is not set", key))
+		log.Printf("key %s environment is not set\n", key)
 	}
 	return value
 }

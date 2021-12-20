@@ -7,12 +7,12 @@ import (
 
 // FileRepository Here you can put all the File repositories available in the project.
 type FileRepository struct {
-	City *file.CityPersistenceFileStore
+	City *file.CityFileStorePersistence
 }
 
 // NewFileRepository Configures the file repository
 func NewFileRepository(v *config.VariableConfig) (*FileRepository, error) {
 	return &FileRepository{
-		City: file.NewCityPersistenceFileStore(v),
+		City: file.NewCityFileStorePersistence(v),
 	}, nil
 }

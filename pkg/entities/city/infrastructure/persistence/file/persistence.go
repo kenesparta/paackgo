@@ -5,24 +5,22 @@ import (
 	"context"
 	"github.com/kenesparta/paackgo/config"
 	"github.com/kenesparta/paackgo/entities/city/domain"
-	"log"
 	"os"
 )
 
-type CityPersistenceFileStore struct {
+type CityFileStorePersistence struct {
 	varConfig *config.VariableConfig
 }
 
-func NewCityPersistenceFileStore(v *config.VariableConfig) *CityPersistenceFileStore {
-	return &CityPersistenceFileStore{
+func NewCityFileStorePersistence(v *config.VariableConfig) *CityFileStorePersistence {
+	return &CityFileStorePersistence{
 		varConfig: v,
 	}
 }
 
-func (cp *CityPersistenceFileStore) Find(_ context.Context, cityId domain.CityId) (*domain.City, error) {
+func (cp *CityFileStorePersistence) Find(_ context.Context, cityId domain.CityId) (*domain.City, error) {
 	fileOpen, err := os.Open(cp.varConfig.File.Name)
 	if err != nil {
-		log.Fatal(err)
 		return nil, err
 	}
 
@@ -36,14 +34,13 @@ func (cp *CityPersistenceFileStore) Find(_ context.Context, cityId domain.CityId
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
 		return nil, err
 	}
 
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {
-			log.Fatal(err)
+			return
 		}
 	}(fileOpen)
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"github.com/gorilla/mux"
 	"github.com/kenesparta/paackgo/config"
+	"github.com/kenesparta/paackgo/logger"
 	"github.com/kenesparta/paackgo/shared/infrastructure/persistence"
-	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -16,11 +16,13 @@ type App struct {
 	variables  config.VariableConfig
 	fileRepo   *persistence.FileRepository
 	memoryRepo *persistence.MemoryRepository
+	newLogger  *logger.NewLogger
 }
 
 // Initialize Sets the initial configuration for the app
 func (a *App) Initialize() {
 	a.loadVariables()
+	a.loadLogger()
 	a.loadStorage()
 	a.loadRoutes()
 }
@@ -34,11 +36,11 @@ func (a *App) Run() {
 
 	go func() {
 		osCall := <-signalChan
-		log.Printf("system call: %v\n", osCall)
+		a.newLogger.ErrorLogger.Printf("system call: %v\n", osCall)
 		cancel()
 	}()
 
 	if err := a.loadServer(ctxCancel); err != nil {
-		log.Printf("failed to serve: %v\n", err)
+		a.newLogger.ErrorLogger.Printf("failed to serve: %v\n", err)
 	}
 }

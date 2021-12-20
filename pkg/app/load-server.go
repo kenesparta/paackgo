@@ -35,9 +35,10 @@ func (a *App) loadServer(ctx context.Context) (err error) {
 	srv := a.getServer()
 
 	go func() {
-		log.Printf("server is running at :%s", a.variables.App.Port)
+		log.Println("server is running, please see the log file at ./logs")
+		a.newLogger.InfoLogger.Printf("server is running at :%s", a.variables.App.Port)
 		if err = srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatal(err)
+			a.newLogger.ErrorLogger.Fatal(err)
 		}
 	}()
 	<-ctx.Done()
@@ -48,10 +49,10 @@ func (a *App) loadServer(ctx context.Context) (err error) {
 	}()
 
 	if err = srv.Shutdown(ctxShutDown); err != nil {
-		log.Fatalf("server Shutdown Failed: %s", err)
+		a.newLogger.ErrorLogger.Fatalf("server Shutdown Failed: %s", err)
 	}
 
-	log.Printf("server exited properly")
+	a.newLogger.InfoLogger.Printf("server exited properly")
 
 	if err == http.ErrServerClosed {
 		err = nil

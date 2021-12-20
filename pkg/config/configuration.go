@@ -14,6 +14,7 @@ type VariableConfig struct {
 	File struct {
 		Name string
 	}
+	LogsDir string
 }
 
 func NewVariableConfig(c iConfiguration) *VariableConfig {
@@ -22,6 +23,7 @@ func NewVariableConfig(c iConfiguration) *VariableConfig {
 	return builder.
 		appPort().
 		fileName().
+		logsDir().
 		build()
 }
 
@@ -43,6 +45,13 @@ func (vb *variableBuilder) appPort() *variableBuilder {
 func (vb *variableBuilder) fileName() *variableBuilder {
 	vb.actions = append(vb.actions, func(config *VariableConfig) {
 		config.File.Name = vb.iConfig.Get("FILE_NAME")
+	})
+	return vb
+}
+
+func (vb *variableBuilder) logsDir() *variableBuilder {
+	vb.actions = append(vb.actions, func(config *VariableConfig) {
+		config.LogsDir = vb.iConfig.Get("LOGS_DIR")
 	})
 	return vb
 }

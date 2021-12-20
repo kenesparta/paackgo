@@ -7,6 +7,6 @@ import (
 
 func (a *App) loadRoutes() {
 	a.router = mux.NewRouter()
-	api.InitInMemoryRoutes(a.memoryRepo, a.router)
-	api.InitFileStorageRoutes(a.fileRepo, a.router)
+	api.InitInMemoryRoutes(a.memoryRepo, a.fileRepo, a.router, a.newLogger)
+	api.InitFileStorageRoutes(a.fileRepo, a.router, a.newLogger)
 }

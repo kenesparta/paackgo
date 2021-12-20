@@ -1,6 +1,9 @@
 package domain
 
-import "github.com/kenesparta/paackgo/entities/city/domain"
+import (
+	"github.com/kenesparta/paackgo/entities/city/domain"
+	"strconv"
+)
 
 type Trip struct {
 	Id            TripId
@@ -11,7 +14,7 @@ type Trip struct {
 }
 
 type Dates []string
-type TripId int32
+type TripId uint32
 
 var validDays = map[string]int{
 	"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4, "Sat": 5, "Sun": 6,
@@ -39,4 +42,13 @@ func (d Dates) IsRepeatedDay() bool {
 
 func (d Dates) IsEmpty() bool {
 	return len(d) == 0
+}
+
+func TransformToTripId(s string) (*TripId, error) {
+	id, err := strconv.Atoi(s)
+	if err != nil {
+		return nil, ErrWrongTripId
+	}
+	tripId := TripId(id)
+	return &tripId, nil
 }
