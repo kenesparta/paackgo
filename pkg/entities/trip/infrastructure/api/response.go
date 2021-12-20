@@ -55,5 +55,8 @@ func (tc *TripCity) ParseToListOfTrips(trips []tripDomain.Trip) ([]TripResponse,
 		}
 		tripResponseArray = append(tripResponseArray, *tr)
 	}
+	if len(tripResponseArray) == 0 {
+		return make([]TripResponse, 0), nil
+	}
 	return tripResponseArray, nil
 }

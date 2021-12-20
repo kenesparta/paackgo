@@ -19,12 +19,12 @@ func (tr *TripRequest) Validate(ctx context.Context, app application.CityAppInte
 	var err error
 	_, err = app.Find(ctx, tr.OriginId)
 	if err != nil {
-		return cityDomain.ErrCityNotFound
+		return cityDomain.ErrCityOriginNotFound
 	}
 
 	_, err = app.Find(ctx, tr.DestinationId)
 	if err != nil {
-		return cityDomain.ErrCityNotFound
+		return cityDomain.ErrCityDestNotFound
 	}
 
 	if tr.Dates.IsEmpty() {
