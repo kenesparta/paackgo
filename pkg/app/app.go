@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gorilla/mux"
 	"github.com/kenesparta/paackgo/config"
+	"github.com/kenesparta/paackgo/shared/infrastructure/persistence"
 	"log"
 	"os"
 	"os/signal"
@@ -11,8 +12,10 @@ import (
 )
 
 type App struct {
-	router    *mux.Router
-	variables config.VariableConfig
+	router     *mux.Router
+	variables  config.VariableConfig
+	fileRepo   *persistence.FileRepository
+	memoryRepo *persistence.MemoryRepository
 }
 
 // Initialize Sets the initial configuration for the app

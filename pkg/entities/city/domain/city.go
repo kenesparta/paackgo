@@ -6,9 +6,4 @@ type City struct {
 }
 
 // CityId The type of the CityId
-type CityId int32
-
-// IsValidId Verifies if the ID is a valid number
-func (c CityId) IsValidId() bool {
-	return c > 0
-}
+type CityId uint32

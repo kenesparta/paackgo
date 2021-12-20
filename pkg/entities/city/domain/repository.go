@@ -1,7 +1,7 @@
 package domain
 
-type TripRepository interface {
-	Get(CityId) City
-	Save(city City) CityId
-	GetAll() []City
+import "context"
+
+type CityRepository interface {
+	Find(context.Context, CityId) (*City, error)
 }

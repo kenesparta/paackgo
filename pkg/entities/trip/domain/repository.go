@@ -1,7 +1,9 @@
 package domain
 
+import "context"
+
 type TripRepository interface {
-	Get(TripId) Trip
-	Save(Trip) TripId
-	GetAll() []Trip
+	Find(context.Context, TripId) (*Trip, error)
+	Save(context.Context, Trip) (*TripId, error)
+	FindAll(context.Context) ([]Trip, error)
 }

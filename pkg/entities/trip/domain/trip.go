@@ -3,11 +3,11 @@ package domain
 import "github.com/kenesparta/paackgo/entities/city/domain"
 
 type Trip struct {
-	id            TripId
-	originId      domain.CityId
-	destinationId domain.CityId
-	dates         Dates
-	price         float64
+	Id            TripId
+	OriginId      domain.CityId
+	DestinationId domain.CityId
+	Dates         Dates
+	Price         float64
 }
 
 type Dates []string
